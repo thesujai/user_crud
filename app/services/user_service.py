@@ -8,7 +8,7 @@ from app.models import UserCreate, UserInDB, UserUpdate
 
 async def create_user(collection: AsyncIOMotorCollection, user: UserCreate) -> UserInDB:
     try:
-        result = await collection.insert_one(user.dict())
+        result = await collection.insert_one(user.model_dump())
         created_user = await collection.find_one({"_id": result.inserted_id})
         return created_user
     except DuplicateKeyError:
