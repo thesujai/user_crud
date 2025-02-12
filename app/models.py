@@ -17,9 +17,7 @@ class PyObjectId(ObjectId):
 
     @classmethod
     def __get_pydantic_json_schema__(cls, core_schema, handler):
-        json_schema = handler(core_schema)
-        json_schema.update(type="string")
-        return json_schema
+        return {"type": "string"}
 
 
 class UserBase(BaseModel):
